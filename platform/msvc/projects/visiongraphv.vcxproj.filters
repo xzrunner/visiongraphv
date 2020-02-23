@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dataset">
+      <UniqueIdentifier>{83509ac6-11ea-49a1-866f-520bf07f83f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{c5ab0a67-05d0-48e5-8209-c8e402221b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="view">
+      <UniqueIdentifier>{acaf202f-a21a-4e87-bebb-5f307a9670bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dataset\node">
+      <UniqueIdentifier>{21f929cd-f8ba-4efe-9fe8-fccba6134b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dataset\pin">
+      <UniqueIdentifier>{d0646095-7d0d-4150-9281-fc0d3036105d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\eval">
+      <UniqueIdentifier>{9d371253-9955-470e-9c94-48f1bf0b3288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\rtti">
+      <UniqueIdentifier>{2a3a0d56-df5b-4a0f-860d-da6bd2a0a1f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools\trans">
+      <UniqueIdentifier>{571488e8-f908-4865-8f48-c34aadee9a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="view\editor">
+      <UniqueIdentifier>{5ad9fca1-1211-4848-9459-d1c167fef27d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="view\preview">
+      <UniqueIdentifier>{75570454-84e7-4c0d-bfcd-29aefee9c89a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="view\toolbar">
+      <UniqueIdentifier>{928273a9-65a7-472b-8948-bdf74ff01b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="view\preview\renderer">
+      <UniqueIdentifier>{c4c565cd-7aab-4cb0-bb67-4e98f86b2cb2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\visiongraphv\Node.h">
+      <Filter>dataset\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\PinType.h">
+      <Filter>dataset\pin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\PinCallback.h">
+      <Filter>dataset\pin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\VgAdapter.h">
+      <Filter>tools\trans</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\Evaluator.h">
+      <Filter>tools\eval</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\node_def_gen.h">
+      <Filter>tools\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\node_regist_cfg.h">
+      <Filter>tools\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\node_rttr_gen.h">
+      <Filter>tools\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\RegistNodes.h">
+      <Filter>tools\rtti</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\VisionGraphView.h" />
+    <ClInclude Include="..\..\..\include\visiongraphv\WxGraphPage.h">
+      <Filter>view\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\WxToolbarPanel.h">
+      <Filter>view\toolbar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\PreviewPage.h">
+      <Filter>view\preview</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\WxPreviewCanvas.h">
+      <Filter>view\preview</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\MessageID.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\visiongraphv\ImageRenderer.h">
+      <Filter>view\preview\renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\Node.cpp">
+      <Filter>dataset\node</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\PinCallback.cpp">
+      <Filter>dataset\pin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\VgAdapter.cpp">
+      <Filter>tools\trans</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\Evaluator.cpp">
+      <Filter>tools\eval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RegistNodes.cpp">
+      <Filter>tools\rtti</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\RegistRTTR.cpp">
+      <Filter>tools\rtti</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\VisionGraphView.cpp" />
+    <ClCompile Include="..\..\..\source\WxGraphPage.cpp">
+      <Filter>view\editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\WxToolbarPanel.cpp">
+      <Filter>view\toolbar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\PreviewPage.cpp">
+      <Filter>view\preview</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\WxPreviewCanvas.cpp">
+      <Filter>view\preview</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\ImageRenderer.cpp">
+      <Filter>view\preview\renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
