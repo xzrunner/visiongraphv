@@ -39,8 +39,8 @@ void ImageRenderer::Setup(const std::shared_ptr<cv::Mat>& mat)
         }
 
         auto& rc = ur::Blackboard::Instance()->GetRenderContext();
-        int tex_id = rc.CreateTexture(pixels.data(), w, h, ur::TEXTURE_A8);
-        m_tex = std::make_unique<ur::Texture>(&rc, w, h, ur::TEXTURE_A8, tex_id);
+        int tex_id = rc.CreateTexture(pixels.data(), w, h, ur::TEXTURE_RED);
+        m_tex = std::make_unique<ur::Texture>(&rc, w, h, ur::TEXTURE_RED, tex_id);
     }
         break;
     case CV_8UC3:
