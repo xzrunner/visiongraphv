@@ -2,8 +2,9 @@
 
 #include <blueprint/typedef.h>
 
-#include <visiongraph/Evaluator.h>
+#include <dag/Graph.h>
 #include <visiongraph/typedef.h>
+#include <visiongraph/CompVarType.h>
 #include <node0/typedef.h>
 
 #include <boost/noncopyable.hpp>
@@ -43,7 +44,7 @@ private:
     void Update();
 
 private:
-    vg::Evaluator m_eval;
+    dag::Graph<vg::CompVarType> m_eval;
 
     std::unordered_map<const bp::Node*, vg::CompPtr> m_front2back;
 
