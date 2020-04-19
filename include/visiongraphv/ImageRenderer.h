@@ -1,8 +1,9 @@
 #pragma once
 
-#include <unirender/Texture.h>
+#include <unirender2/typedef.h>
 
 namespace cv { class Mat; }
+namespace ur2 { class Device; class Context; }
 
 namespace vgv
 {
@@ -10,14 +11,15 @@ namespace vgv
 class ImageRenderer
 {
 public:
-    void Setup(const std::shared_ptr<cv::Mat>& mat);
+    void Setup(const ur2::Device& dev,
+        const std::shared_ptr<cv::Mat>& mat);
 
-    void Draw() const;
+    void Draw(const ur2::Device& dev, ur2::Context& ctx) const;
 
     void Clear();
 
 private:
-    ur::TexturePtr m_tex = nullptr;
+    ur2::TexturePtr m_tex = nullptr;
 
 }; // ImageRenderer
 

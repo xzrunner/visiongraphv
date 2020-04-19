@@ -1,7 +1,8 @@
 #include "visiongraphv/ImageRenderer.h"
 
-#include <unirender/Blackboard.h>
-#include <unirender/RenderContext.h>
+#include <unirender2/Device.h>
+#include <unirender2/TextureDescription.h>
+#include <unirender2/RenderState.h>
 #include <painting2/RenderSystem.h>
 #include <renderpipeline/RenderMgr.h>
 
@@ -10,13 +11,19 @@
 namespace vgv
 {
 
-void ImageRenderer::Setup(const std::shared_ptr<cv::Mat>& mat)
+void ImageRenderer::Setup(const ur2::Device& dev,
+                          const std::shared_ptr<cv::Mat>& mat)
 {
     if (!mat || mat->empty()) {
         return;
     }
 
     auto t = mat->type();
+
+    ur2::TextureDescription desc;
+    desc.target = ur2::TextureTarget::Texture2D;
+    desc.width  = mat->cols;
+    desc.height = mat->rows;
 
     switch (mat->type())
     {
@@ -38,9 +45,8 @@ void ImageRenderer::Setup(const std::shared_ptr<cv::Mat>& mat)
             }
         }
 
-        auto& rc = ur::Blackboard::Instance()->GetRenderContext();
-        int tex_id = rc.CreateTexture(pixels.data(), w, h, ur::TEXTURE_RED);
-        m_tex = std::make_unique<ur::Texture>(&rc, w, h, ur::TEXTURE_RED, tex_id);
+        desc.format = ur2::TextureFormat::RED;
+        m_tex = dev.CreateTexture(desc, pixels.data());
     }
         break;
     case CV_8UC3:
@@ -63,9 +69,8 @@ void ImageRenderer::Setup(const std::shared_ptr<cv::Mat>& mat)
             }
         }
 
-        auto& rc = ur::Blackboard::Instance()->GetRenderContext();
-        int tex_id = rc.CreateTexture(pixels.data(), w, h, ur::TEXTURE_RGB);
-        m_tex = std::make_unique<ur::Texture>(&rc, w, h, ur::TEXTURE_RGB, tex_id);
+        desc.format = ur2::TextureFormat::RGB;
+        m_tex = dev.CreateTexture(desc, pixels.data());
     }
         break;
     default:
@@ -73,20 +78,17 @@ void ImageRenderer::Setup(const std::shared_ptr<cv::Mat>& mat)
     }
 }
 
-void ImageRenderer::Draw() const
+void ImageRenderer::Draw(const ur2::Device& dev, ur2::Context& ctx) const
 {
     if (!m_tex) {
         return;
     }
 
-    auto& rc = ur::Blackboard::Instance()->GetRenderContext();
-    rc.SetZTest(ur::DEPTH_DISABLE);
-    rc.SetCullMode(ur::CULL_DISABLE);
+    ur2::RenderState rs;
+    rs.depth_test.enabled = false;
+    rs.facet_culling.enabled = false;
 
-    pt2::RenderSystem::DrawTexture(*m_tex, sm::rect(512, 512), sm::Matrix2D(), false);
-
-    rc.SetZTest(ur::DEPTH_LESS_EQUAL);
-    rc.SetCullMode(ur::CULL_BACK);
+    pt2::RenderSystem::DrawTexture(dev, ctx, rs, m_tex, sm::rect(512, 512), sm::Matrix2D(), false);
 }
 
 void ImageRenderer::Clear()

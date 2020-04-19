@@ -15,8 +15,8 @@ class WxGraphPage;
 class WxPreviewCanvas : public ee3::WxStageCanvas
 {
 public:
-    WxPreviewCanvas(ee0::WxStagePage* stage, ECS_WORLD_PARAM
-        const ee0::RenderContext& rc);
+    WxPreviewCanvas(const ur2::Device& dev, ee0::WxStagePage* stage,
+        ECS_WORLD_PARAM const ee0::RenderContext& rc);
     virtual ~WxPreviewCanvas();
 
     virtual void OnNotify(uint32_t msg, const ee0::VariantSet& variants) override;
@@ -32,8 +32,7 @@ private:
     void OnSelectionInsert(const ee0::VariantSet& variants);
     void OnSelectionClear(const ee0::VariantSet& variants);
 
-    void DrawSelected(tess::Painter& pt, const sm::mat4& cam_mat,
-        const pt0::RenderContext& rc) const;
+    void DrawSelected(tess::Painter& pt, const sm::mat4& cam_mat) const;
 
     void SetupRenderer();
 
