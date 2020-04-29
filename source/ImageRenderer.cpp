@@ -1,9 +1,9 @@
 #include "visiongraphv/ImageRenderer.h"
 
-#include <unirender2/Device.h>
-#include <unirender2/TextureDescription.h>
-#include <unirender2/RenderState.h>
-#include <unirender2/Factory.h>
+#include <unirender/Device.h>
+#include <unirender/TextureDescription.h>
+#include <unirender/RenderState.h>
+#include <unirender/Factory.h>
 #include <painting2/RenderSystem.h>
 #include <renderpipeline/RenderMgr.h>
 
@@ -12,7 +12,7 @@
 namespace vgv
 {
 
-void ImageRenderer::Setup(const ur2::Device& dev,
+void ImageRenderer::Setup(const ur::Device& dev,
                           const std::shared_ptr<cv::Mat>& mat)
 {
     if (!mat || mat->empty()) {
@@ -21,8 +21,8 @@ void ImageRenderer::Setup(const ur2::Device& dev,
 
     auto t = mat->type();
 
-    ur2::TextureDescription desc;
-    desc.target = ur2::TextureTarget::Texture2D;
+    ur::TextureDescription desc;
+    desc.target = ur::TextureTarget::Texture2D;
     desc.width  = mat->cols;
     desc.height = mat->rows;
 
@@ -46,7 +46,7 @@ void ImageRenderer::Setup(const ur2::Device& dev,
             }
         }
 
-        desc.format = ur2::TextureFormat::RED;
+        desc.format = ur::TextureFormat::RED;
         m_tex = dev.CreateTexture(desc, pixels.data());
     }
         break;
@@ -70,7 +70,7 @@ void ImageRenderer::Setup(const ur2::Device& dev,
             }
         }
 
-        desc.format = ur2::TextureFormat::RGB;
+        desc.format = ur::TextureFormat::RGB;
         m_tex = dev.CreateTexture(desc, pixels.data());
     }
         break;
@@ -79,13 +79,13 @@ void ImageRenderer::Setup(const ur2::Device& dev,
     }
 }
 
-void ImageRenderer::Draw(const ur2::Device& dev, ur2::Context& ctx) const
+void ImageRenderer::Draw(const ur::Device& dev, ur::Context& ctx) const
 {
     if (!m_tex) {
         return;
     }
 
-    auto rs = ur2::DefaultRenderState2D();
+    auto rs = ur::DefaultRenderState2D();
     pt2::RenderSystem::DrawTexture(dev, ctx, rs, m_tex, sm::rect(512, 512), sm::Matrix2D(), false);
 }
 
